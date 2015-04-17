@@ -3,7 +3,12 @@
         <div class="col-sm-12">
 
             <div id="application-alerts">
-
+                <div class='alert alert-info alert-dismissible' role='alert'>
+                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                    Enter start and end locations for a route in order to get collision statistics and view collision hotspots.
+                </div>
             </div>
 
 
@@ -54,60 +59,60 @@
                         <div class="form-group">
                             <label for="year">Year of Collision</label>
                             <div id="year">
-                                <div>
-                                    <div class="checkbox-inline">
+                                <div class="row">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2005">
                                             2005
                                         </label>
                                     </div>
-                                    <div class="checkbox-inline">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2006">
                                             2006
                                         </label>
                                     </div>
-                                    <div class="checkbox-inline">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2007">
                                             2007
                                         </label>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="checkbox-inline">
+                                <div class="row">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2008">
                                             2008
                                         </label>
                                     </div>
-                                    <div class="checkbox-inline">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2009">
                                             2009
                                         </label>
                                     </div>
-                                    <div class="checkbox-inline">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2010">
                                             2010
                                         </label>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="checkbox-inline">
+                                <div class="row">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2011" checked>
                                             2011
                                         </label>
                                     </div>
-                                    <div class="checkbox-inline">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2012" checked>
                                             2012
                                         </label>
                                     </div>
-                                    <div class="checkbox-inline">
+                                    <div class="col-xs-4">
                                         <label>
                                             <input type="checkbox" id="year2013" checked>
                                             2013
@@ -127,7 +132,7 @@
 
         <div class="col-sm-9 map-col">
             <div id="search-results">
-                <table class="table table-bordered">
+                <table id="collision-results-table" class="table table-bordered">
                     <thead>
                     <tr>
                         <th>Collisions</th>
@@ -140,22 +145,49 @@
                         <th>Casualties</th>
                         <th>CaPKM <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-placement="bottom" tabindex="0"  data-toggle="popover" data-trigger="hover" title="Casualties Per Kilometre" data-content="Total number of casualties divided by the length of the route."></span>
                             <span class="sr-only">Collisions per kilometre.</span></th>
-                        <th>Weighted CaPKM <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-placement="bottom" tabindex="0"  data-toggle="popover" data-trigger="hover" title="Weighted Casualties Per Kilometre" data-content=" Each casualty is assigned a value based on severity; 3 for fatal, 2 for serious and 1 for slight. These weighted values are summed together and divided by the length of the route to give the Weighted CaPKM."></span>
-                            <span class="sr-only">Weighted collisions per kilometre.</span></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td id="result-number-collisions"></td>
-                        <td id="result-collisions-km"></td>
-                        <td id="result-weighted-collisions-km"></td>
-                        <td id="result-number-casualties"></td>
-                        <td id="result-casualties-km"></td>
-                        <td id="result-weighted-casualties-km"></td>
+                        <td class="result-number-collisions"></td>
+                        <td class="result-collisions-km"></td>
+                        <td class="result-weighted-collisions-km"></td>
+                        <td class="result-number-casualties"></td>
+                        <td class="result-casualties-km"></td>
                     </tr>
                     </tbody>
                 </table>
 
+                <table id="mobile-collision-results-table" class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Collisions</th>
+                            <td class="result-number-collisions"></td>
+                        </tr>
+                        <tr>
+                            <th>CPKM  <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-placement="bottom" tabindex="0"  data-toggle="popover" data-trigger="focus" title="Collisions Per Kilometre" data-content="Total number of collisions divided by the length of the route."></span>
+                                <span class="sr-only">Collisions per kilometre.</span>
+                            </th>
+                            <td class="result-collisions-km"></td>
+                        </tr>
+                        <tr>
+                            <th>Weighted CPKM <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-placement="bottom" tabindex="0"  data-toggle="popover" data-trigger="focus" title="Weighted Collisions Per Kilometre" data-content=" Each collision is assigned a value based on its severity; 3 for fatal, 2 for serious and 1 for slight. These weighted values are summed together and divided by the length of the route to give the Weighted CPKM."></span>
+                                <span class="sr-only">Weighted collisions per kilometre.</span>
+                            </th>
+                            <td class="result-weighted-collisions-km"></td>
+                        </tr>
+                        <tr>
+                            <th>Casualties</th>
+                            <td class="result-number-casualties"></td>
+                        </tr>
+                        <tr>
+                            <th>CaPKM <span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-placement="bottom" tabindex="0"  data-toggle="popover" data-trigger="focus" title="Casualties Per Kilometre" data-content="Total number of casualties divided by the length of the route."></span>
+                                <span class="sr-only">Collisions per kilometre.</span>
+                            </th>
+                            <td class="result-casualties-km"></td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <div id="map-canvas"></div>
             </div>

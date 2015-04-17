@@ -4,12 +4,26 @@
 
 #map-canvas{ height: 500px;}
 
-.checkbox-inline label{
+#year label{
     font-weight: 400;
 }
 
 .loader-text{
     text-align: center;
+}
+
+#mobile-collision-results-table{
+    display:none;
+}
+
+@media (max-width:767px){
+    #collision-results-table{
+        display:none;
+    }
+
+    #mobile-collision-results-table{
+        display: inline-table;
+    }
 }
 
 /*
